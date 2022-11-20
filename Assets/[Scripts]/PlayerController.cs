@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public float groundRadius; // the size of the circle
     public LayerMask groundLayerMask; // the stuff we can collide with
 
-    
+    private float _timer;
 
     [Header("Controls")]
     public Joystick leftStick;
@@ -37,15 +37,19 @@ public class PlayerController : MonoBehaviour
     public float verticalThreshold;
     public PhysicsMaterial2D physMat;
 
-    public float delayForAttacking;
-
     [Header("Sharebale")]
     public int _score;
     public float _maxHealth;
     public float _health;
+    [Header("GetsugaProperties")]
+    public float fireRate;
+    public Transform GetsugaTransform;
+    private GetsugaManager getsugaParent;
+
 
     void Start()
     {
+        getsugaParent = FindObjectOfType<GetsugaManager>();
         _rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _score = 0;
@@ -66,6 +70,12 @@ public class PlayerController : MonoBehaviour
         Attack();
 
         CheckHealth();
+        if (_timer > 0)
+        {
+            _timer -= Time.deltaTime;
+            if (_timer < 0)
+                _timer = 0;
+        }
     }
     private void CheckHealth()
     {
@@ -82,13 +92,20 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-       /* if(Input.GetKey(KeyCode.F) && !(animator.GetBool("Attacking")))
+        if (Input.GetKey(KeyCode.F) && _timer == 0)
         {
-            Debug.Log("shoot");
-            ChangeAnimation(PlayerAnimationState.ATTACK);
-        }*/
+            FireGetsuga();
+        }
+        
     }
-
+    public void FireGetsuga()
+    {
+        if(_timer == 0)
+        {
+            var getsuga = getsugaParent.GetBullet(GetsugaTransform.position);
+            _timer = fireRate;
+        }
+    }
     void Movement()
     {
         

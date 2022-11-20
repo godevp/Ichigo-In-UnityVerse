@@ -106,7 +106,6 @@ public class PlatformScript : MonoBehaviour
                 transform.position = new Vector2(
                  startPoint.x - Mathf.PingPong(horizontalSpeed * Time.time, horizontalDistance), startPoint.y);
                 break;
-                break;
             case PlatformDirection.VERTICALUP:
                 transform.position = new Vector2(startPoint.x,
                     Mathf.PingPong(verticalSpeed * Time.time, verticalDistance) + startPoint.y);

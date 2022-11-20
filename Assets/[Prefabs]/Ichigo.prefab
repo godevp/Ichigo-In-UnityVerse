@@ -150,6 +150,8 @@ MonoBehaviour:
   _score: 0
   _maxHealth: 100
   _health: 100
+  GetsugaTransform: {fileID: 1472512535751927827}
+  getsugaPrefab: {fileID: 3077248972792840815, guid: d14cac3d2ce1e4f4ebcf411e87e96a40, type: 3}
 --- !u!60 &7916172690150437411
 PolygonCollider2D:
   m_ObjectHideFlags: 0
