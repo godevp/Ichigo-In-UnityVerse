@@ -5,8 +5,10 @@ using UnityEngine;
 
 public enum PlatformDirection
 {
-    HORIZONTAL,
-    VERTICAL,
+    HORIZONTALRIGHT,
+    HORIZONTALLEFT,
+    VERTICALUP,
+    VERTICALDOWN,
     DIAGONAL_UP,
     DIAGONAL_DOWN,
     CUSTOM
@@ -36,11 +38,13 @@ public class PlatformScript : MonoBehaviour
     private List<Vector2> pathList;
     private float timer;
     private int currentPointIndex;
-
+    private float minusX;
+    private float plusX;
     // Start is called before the first frame update
     void Start()
     {
         timer = 0.0f;
+        
         currentPointIndex = 0;
         startPoint = transform.position;
         pathList = new List<Vector2>(); // create an empty container of Vector2s
@@ -53,7 +57,8 @@ public class PlatformScript : MonoBehaviour
             pathList.Add(point);
         }
         pathList.Add(transform.position);
-
+        minusX = startPoint.x - horizontalDistance/2;
+        plusX = startPoint.x + horizontalDistance / 2;
         destinationPoint = pathList[currentPointIndex];
     }
 
@@ -86,19 +91,29 @@ public class PlatformScript : MonoBehaviour
                 destinationPoint = pathList[currentPointIndex];
             }
         }
+         
     }
 
     public void Move()
     {
         switch (direction)
         {
-            case PlatformDirection.HORIZONTAL:
+            case PlatformDirection.HORIZONTALRIGHT:
                 transform.position = new Vector2(
         Mathf.PingPong(horizontalSpeed * Time.time, horizontalDistance) + startPoint.x, startPoint.y);
                 break;
-            case PlatformDirection.VERTICAL:
+            case PlatformDirection.HORIZONTALLEFT:
+                transform.position = new Vector2(
+                 startPoint.x - Mathf.PingPong(horizontalSpeed * Time.time, horizontalDistance), startPoint.y);
+                break;
+                break;
+            case PlatformDirection.VERTICALUP:
                 transform.position = new Vector2(startPoint.x,
                     Mathf.PingPong(verticalSpeed * Time.time, verticalDistance) + startPoint.y);
+                break;
+            case PlatformDirection.VERTICALDOWN:
+                transform.position = new Vector2(startPoint.x,
+                    startPoint.y - Mathf.PingPong(verticalSpeed * Time.time, verticalDistance));
                 break;
             case PlatformDirection.DIAGONAL_UP:
                 transform.position = new Vector2(
@@ -114,5 +129,14 @@ public class PlatformScript : MonoBehaviour
                 transform.position = Vector2.Lerp(startPoint, destinationPoint, timer);
                 break;
         }
+    }
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        other.gameObject.transform.SetParent(transform);
+    }
+
+    public void OnCollisionExit2D(Collision2D other)
+    {
+        other.gameObject.transform.SetParent(null);
     }
 }

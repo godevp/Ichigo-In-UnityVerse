@@ -257,13 +257,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bg1_6
+      name: portal
       rect:
         serializedVersion: 2
-        x: 3174
-        y: 0
-        width: 529.5714
-        height: 1116
+        x: 3073
+        y: 223
+        width: 510
+        height: 558
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,7 +292,7 @@ TextureImporter:
       bg1_0: -1161668466
       bg1_2: 548028298
       bg1_5: 1855978557
-      bg1_6: 1305784256
+      portal: 1305784256
       bg1_3: -1463854769
       bg1_4: -652804498
   spritePackingTag: 
