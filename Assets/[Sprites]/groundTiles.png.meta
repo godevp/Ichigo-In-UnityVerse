@@ -2924,33 +2924,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: groundTiles_133
+      name: DissaperPlatform
       rect:
         serializedVersion: 2
         x: 160
         y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 245b73f23d3c03347828a1d259ee0532
-      internalID: -2130434081
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: groundTiles_134
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 32
+        width: 96
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2961,27 +2940,6 @@ TextureImporter:
       bones: []
       spriteID: 09460f30ed0a2b745a7779ab52f592c1
       internalID: -1577703214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: groundTiles_135
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e3a18e7f4bc76649a01d13214a54433
-      internalID: -948065525
       vertices: []
       indices: 
       edges: []
@@ -4187,6 +4145,7 @@ TextureImporter:
       groundTiles_163: 1286544098
       groundTiles_5: -361573982
       groundTiles_95: -1548807316
+      DissaperPlatform: -1577703214
       groundTiles_104: -922447032
       groundTiles_44: 1259112626
       groundTiles_129: 1823207147
@@ -4297,7 +4256,6 @@ TextureImporter:
       groundTiles_146: -472079034
       groundTiles_60: 1655997618
       groundTiles_158: -1405169462
-      groundTiles_134: -1577703214
       groundTiles_169: 106433257
       groundTiles_112: -455975022
       groundTiles_115: 1135676483

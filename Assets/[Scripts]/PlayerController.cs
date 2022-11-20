@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public enum PlayerAnimationState
 {
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask; // the stuff we can collide with
 
     private float _timer;
+    private float _timer2;
 
     [Header("Controls")]
     public Joystick leftStick;
@@ -43,8 +46,10 @@ public class PlayerController : MonoBehaviour
     public float _health;
     [Header("GetsugaProperties")]
     public float fireRate;
+    public float simpleAttackRate;
     public Transform GetsugaTransform;
     private GetsugaManager getsugaParent;
+    public UnityEngine.UI.Button getusgaButton;
 
 
     void Start()
@@ -75,6 +80,13 @@ public class PlayerController : MonoBehaviour
             _timer -= Time.deltaTime;
             if (_timer < 0)
                 _timer = 0;
+            SetNewColors(new Color(getusgaButton.colors.normalColor.r, getusgaButton.colors.normalColor.g, getusgaButton.colors.normalColor.b, 255), getusgaButton.colors);
+        }
+        if (_timer2 > 0)
+        {
+            _timer2 -= Time.deltaTime;
+            if (_timer2 < 0)
+                _timer2 = 0;
         }
     }
     private void CheckHealth()
@@ -104,6 +116,24 @@ public class PlayerController : MonoBehaviour
         {
             var getsuga = getsugaParent.GetBullet(GetsugaTransform.position);
             _timer = fireRate;
+            SetNewColors(new Color(getusgaButton.colors.normalColor.r, getusgaButton.colors.normalColor.g, getusgaButton.colors.normalColor.b,100), getusgaButton.colors);
+           // getusgaButton.colors
+        }
+    }
+    void SetNewColors(Color color, ColorBlock colorss)
+    {
+        ColorBlock colorsBlock = new ColorBlock();
+        colorsBlock.normalColor = color;
+        colorsBlock.selectedColor = color;
+        colorsBlock.pressedColor = color;
+        colorss = colorsBlock;
+    }
+    public void SimpleAttack()
+    {
+        if(_timer2 == 0)
+        {
+            Debug.Log("SimpleAttack");
+            _timer2 = simpleAttackRate;
         }
     }
     void Movement()
@@ -132,8 +162,9 @@ public class PlayerController : MonoBehaviour
 
      private void Jump()
     {
-        var y = Input.GetAxis("Jump") + leftStick.Vertical;
+        var y = Input.GetAxis("Fire2") + leftStick.Vertical;
 
+        
         if ((isGrounded) && (y > verticalThreshold) /*&& !(animator.GetBool("Attacking"))*/)
         {
             _rb.AddForce(Vector2.up * verticalForce, ForceMode2D.Impulse);
