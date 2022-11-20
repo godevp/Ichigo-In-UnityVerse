@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+/*
+ 
+ Source file Name - Score.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: update for the score
+ */
 public class Score : MonoBehaviour
 {
 

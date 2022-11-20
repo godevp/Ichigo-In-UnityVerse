@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ 
+ Source file Name - CoinScript.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 10/20/2022 
+ Program description: coin behaviour script
 
+ */
 public class CoinScript : MonoBehaviour
 {
     [Range(5, 100)]

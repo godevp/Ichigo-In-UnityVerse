@@ -5,7 +5,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
 
+/*
+ 
+ Source file Name - Getsuga.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: getsuga it's like a magic bullet for our player, and this is the behaviour script
 
+ */
 public class Getsuga : MonoBehaviour
 {
    
