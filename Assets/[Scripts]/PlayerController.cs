@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum PlayerAnimationState
 {
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public float groundRadius; // the size of the circle
     public LayerMask groundLayerMask; // the stuff we can collide with
 
+    
+
     [Header("Controls")]
     public Joystick leftStick;
     [Range(0.1f, 1.0f)]
@@ -36,11 +39,16 @@ public class PlayerController : MonoBehaviour
 
     public float delayForAttacking;
 
+    [Header("Sharebale")]
+    public int _score;
+    public float _maxHealth;
+    public float _health;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        _score = 0;
     }
 
     
@@ -56,9 +64,19 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Attack();
-        if(Input.GetKey(KeyCode.H))
+
+        CheckHealth();
+    }
+    private void CheckHealth()
+    {
+        if (Input.GetKey(KeyCode.H))
         {
-            ChangeAnimation(PlayerAnimationState.ATTACKED);
+            _health -= Time.deltaTime * 5;
+        }
+        if(_health <= 0)
+        {
+            _health = 0;
+            Buttons.instance.Surrender();
         }
     }
 
