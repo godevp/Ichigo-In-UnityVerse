@@ -1,20 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private LinkedList<EnemyController> enemyList;
-
+    private List<EnemyController> enemyList;
+    public static EnemyManager instance;
+    public float respawnTime;
     private void Start()
     {
-       enemyList = new LinkedList<EnemyController>();
-       var temp = FindObjectsOfType<EnemyController>();
-       foreach(EnemyController x in temp)
-        {
-            enemyList.AddLast(x);
-            Debug.Log(enemyList.Count);
+       enemyList = new List<EnemyController>();
+       
+       foreach(var x in FindObjectsOfType<EnemyController>())
+       {
+            enemyList.Add(x);
         }
+        instance = this;
+    }
+
+    private void Update()
+    {
+       for(int i = 0; i< enemyList.Count; i++)
+        {
+            if (enemyList[i].health <= 0)
+            {
+                if (enemyList[i].isActive)
+                {
+                    enemyList[i].gameObject.SetActive(false);
+                    StartCoroutine(ActivateAfterSomeTime(enemyList[i].gameObject, i));
+                }
+            }
+        }
+    }
+    public IEnumerator ActivateAfterSomeTime(GameObject go, int index)
+    {
+        go.GetComponent<EnemyController>().isActive = false;
+        var coin = Instantiate(enemyList[index].coinPrefab, enemyList[index].coinsParent.transform);
+        coin.transform.position = go.transform.position;
+        yield return new WaitForSeconds(respawnTime);
+        Debug.Log("WFEGFQWF");
+        go.SetActive(true);
+        go.GetComponent<EnemyController>().isActive = true;
+        go.GetComponent<EnemyController>().health = go.GetComponent<EnemyController>().maxHealth;
+        go.transform.position = go.GetComponent<EnemyController>().startPos;
+
     }
 
 }

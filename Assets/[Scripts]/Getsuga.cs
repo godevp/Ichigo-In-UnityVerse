@@ -75,10 +75,7 @@ public class Getsuga : MonoBehaviour
             if (collision.gameObject.tag == "Enemy")
             {
                 collision.gameObject.GetComponent<EnemyController>().health -= power;
-            }
-            if(collision.gameObject.tag == "Ground")
-            {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
     }

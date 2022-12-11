@@ -35,11 +35,4 @@ public class DissaperPlatformManager : MonoBehaviour
 
     }
 
-    public void SpawnCoinFromEnemy(Transform t, GameObject go)
-    {
-        if(t != null && gameObject != null)
-        {
-           
-        }
-    }
 }

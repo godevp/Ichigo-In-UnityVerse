@@ -29,6 +29,8 @@ public class EnemyController : MonoBehaviour
     public LayerMask maskForAnotherEnemies;
     public Vector2 direction;
     public PlayerDetection playerDetection;
+    public Vector3 startPos;
+    
     [Header("Stats")]
     [Range(0,1000)]
     public float maxHealth;
@@ -53,6 +55,8 @@ public class EnemyController : MonoBehaviour
     [Header("Anim")]
     public Animator _animator;
     public float attackForce;
+
+    public bool isActive = true;
     private void Start()
     {
         direction = Vector2.left;
@@ -66,6 +70,7 @@ public class EnemyController : MonoBehaviour
         if(coinsParent ==null)
         coinsParent = GameObject.Find("[COINS]");
         _animator = GetComponent<Animator>();
+        startPos = transform.position;
     }
 
     private void Update()
@@ -118,11 +123,11 @@ public class EnemyController : MonoBehaviour
         healthBar.value = health;
 
 
-        if(health <= 0)
+       /* if(health <= 0)
         {
             health = 0;
             StartCoroutine(DelayBeforeDeath(delayBeforeDeath));
-        }
+        }*/
     }
     void SimpleAttack()
     {
@@ -152,8 +157,7 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
-        var coin = Instantiate(coinPrefab, coinsParent.transform);
-        coin.transform.position = transform.position;
+        
     }
     public void Movement()
     {
