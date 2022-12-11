@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
     public int _score;
     public float _maxHealth;
     public float _health;
+    public float _maxMana;
+    public float _mana;
     [Header("GetsugaProperties")]
     public float fireRate;
     public float simpleAttackRate;

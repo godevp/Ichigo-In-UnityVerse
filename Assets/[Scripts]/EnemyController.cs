@@ -12,8 +12,9 @@ public class EnemyController : MonoBehaviour
     public PlayerDetection playerDetection;
 
     [Range(0,1000)]
+    public float maxHealth;
     public float health;
-    float maxHealth;
+    
 
     public Transform inFrontPoint;
     public Transform AheadPoint;
@@ -46,7 +47,7 @@ public class EnemyController : MonoBehaviour
     {
         direction = Vector2.left;
         playerDetection.setMaskFromParent(playerMask);
-        maxHealth= health;
+        health = maxHealth;
         healthBar = GetComponentInChildren<UnityEngine.UI.Slider>();
         healthBar.value = health;
         healthBar.maxValue = maxHealth;

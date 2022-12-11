@@ -10,7 +10,7 @@ using UnityEngine.Scripting.APIUpdating;
  Source file Name - Getsuga.cs
  Name - Vitaliy Karabanov
  ID - 101312885
- Date last Modified - 11/20/2022 
+ Date last Modified - 12/10/2022 
  Program description: getsuga it's like a magic bullet for our player, and this is the behaviour script
 
  */
@@ -23,6 +23,8 @@ public class Getsuga : MonoBehaviour
     public float _speed = 25.0f;
     public Boundary verticalBounds;
     public Boundary horizontalBounds;
+
+    public float power = 50.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -67,8 +69,24 @@ public class Getsuga : MonoBehaviour
             getsugaParent.ReturnBullet(this.gameObject);
         }
     }
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision != null)
+        {
+            if(collision.gameObject.tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<EnemyController>().health -= power;
+            }
+        }
+    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision != null)
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<EnemyController>().health -= power;
+            }
+        }
     }
 }

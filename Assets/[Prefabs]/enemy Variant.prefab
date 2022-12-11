@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 591058683448358386, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: coinPrefab
       value: 
