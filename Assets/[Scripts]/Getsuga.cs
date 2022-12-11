@@ -55,8 +55,6 @@ public class Getsuga : MonoBehaviour
             var clampedXVelocity = Mathf.Clamp(_rb.velocity.x, -_speed, -_speed);
             _rb.velocity = new Vector2(clampedXVelocity, _rb.velocity.y);
         }
-       
-
     }
 
     void CheckBounds()
@@ -69,16 +67,7 @@ public class Getsuga : MonoBehaviour
             getsugaParent.ReturnBullet(this.gameObject);
         }
     }
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision != null)
-        {
-            if(collision.gameObject.tag == "Enemy")
-            {
-                collision.gameObject.GetComponent<EnemyController>().health -= power;
-            }
-        }
-    }*/
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
@@ -87,6 +76,11 @@ public class Getsuga : MonoBehaviour
             {
                 collision.gameObject.GetComponent<EnemyController>().health -= power;
             }
+            if(collision.gameObject.tag == "Ground")
+            {
+                Destroy(this);
+            }
         }
     }
+
 }

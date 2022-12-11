@@ -40,6 +40,7 @@ RectTransform:
   - {fileID: 8240699051088232070}
   - {fileID: 766780616010086916}
   - {fileID: 1027000383668142264}
+  - {fileID: 4052230652527747952}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,13 +113,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a2b6a890c36674f9aa7c086b75678d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 3
-  playerDetection: {fileID: 6288671531735762309}
-  maxHealth: 0
-  health: 100
+  horizontalSpeed: 7
+  isObstacleAhead: 0
+  isAnotherEnemyAhead: 0
+  isPlayerAhead: 0
+  isGroundAhead: 0
+  isGrounded: 1
   inFrontPoint: {fileID: 1679604090331409124}
   AheadPoint: {fileID: 3176077601757190361}
   groundPoint: {fileID: 1125391420301616721}
+  healthCanvas: {fileID: 8971354322910207959}
+  healthBar: {fileID: 4989474683773529528}
   otherEnemiesPoint: {fileID: 477953345887872761}
   groundRadius: 0.6
   groundLayerMask:
@@ -127,20 +132,24 @@ MonoBehaviour:
   maskForAnotherEnemies:
     serializedVersion: 2
     m_Bits: 256
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 512
+  direction: {x: 0, y: 0}
+  playerDetection: {fileID: 6288671531735762309}
+  maxHealth: 100
+  health: 100
   coinPrefab: {fileID: 618200429163116225, guid: 3b3555cbe47f21a41a1defeb1291a97b, type: 3}
   coinsParent: {fileID: 0}
   delayBeforeDeath: 0.6666
-  isObstacleAhead: 0
-  isAnotherEnemyAhead: 0
-  isPlayerAhead: 0
-  isGroundAhead: 0
-  isGrounded: 1
-  healthCanvas: {fileID: 8971354322910207959}
-  healthBar: {fileID: 4989474683773529528}
-  direction: {x: 0, y: 0}
+  jumpDistance: 64.5
+  simpleAttackDistance: 7
+  chaseTarget: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  whereToCheck: {fileID: 4052230652527747952}
+  shouldDash: 0
+  startedSimpleAttack: 0
+  _animator: {fileID: 0}
+  attackForce: 0.09
 --- !u!50 &591058683448358287
 Rigidbody2D:
   serializedVersion: 4
@@ -152,8 +161,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 1.4319894
+  m_UseAutoMass: 0
+  m_Mass: 0.3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -358,7 +367,38 @@ MonoBehaviour:
   playerDetected: 0
   canJumpToPlayer: 0
   LOS: 0
-  collider: {fileID: 0}
+  LOSTransform: {fileID: 0}
+--- !u!1 &7005862750660099105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4052230652527747952}
+  m_Layer: 8
+  m_Name: MaxDistanceForDash
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4052230652527747952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005862750660099105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.67, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 591058683448358285}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7299232925006850217
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1789743109225908862, guid: a8a81a6eb214c4a4881bcc53e9e7ab09, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1826561933958833769, guid: a8a81a6eb214c4a4881bcc53e9e7ab09, type: 3}
       propertyPath: m_Pivot.x

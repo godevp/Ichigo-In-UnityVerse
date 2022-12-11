@@ -23,6 +23,10 @@ public class DeathController : MonoBehaviour
         {
             Respawn(collision.gameObject);
         }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     void Respawn(GameObject go)

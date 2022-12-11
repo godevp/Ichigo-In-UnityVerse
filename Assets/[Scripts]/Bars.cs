@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 /*
  
- Source file Name - HealthBar.cs
+ Source file Name - Bars.cs
  Name - Vitaliy Karabanov
  ID - 101312885
  Date last Modified - 11/20/2022 
  Program description: health bar update
 
  */
-public class HealthBar : MonoBehaviour
+public class Bars : MonoBehaviour
 {
     public Slider slider;
     public Slider manaSlider;

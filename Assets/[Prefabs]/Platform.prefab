@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2285852110785998187}
   m_Layer: 6
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22df0497ae26174f94c934d9b970bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
+  horizontalDistance: 8
+  horizontalSpeed: 3
+  verticalDistance: 8
+  verticalSpeed: 3
+  customSpeedFactor: 0.02
+  pathPoints: []
 --- !u!50 &5520896444184011633
 Rigidbody2D:
   serializedVersion: 4

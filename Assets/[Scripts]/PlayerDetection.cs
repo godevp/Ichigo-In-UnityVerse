@@ -8,9 +8,8 @@ public class PlayerDetection : MonoBehaviour
     public bool playerDetected;
     public bool canJumpToPlayer;
     public bool LOS;
-    private Transform LOSTransform;
+    public Transform LOSTransform;
     private LayerMask playerMask;
-    public Collider2D collider;
 
 
 
@@ -29,7 +28,6 @@ public class PlayerDetection : MonoBehaviour
         {
 
             var hit = Physics2D.Linecast(transform.position, LOSTransform.position, collisionLayerMask);
-            collider = hit.collider;
             LOS = (hit.collider.gameObject.tag == "Player");
             if (LOS)
             {
@@ -41,6 +39,7 @@ public class PlayerDetection : MonoBehaviour
             }
 
         }
+
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,7 +62,7 @@ public class PlayerDetection : MonoBehaviour
         if(LOSTransform != null)
         {
             float distanceToPlayer = (transform.position - LOSTransform.transform.position).magnitude;
-            canFollow = (LOS && playerDetected && canJumpToPlayer && distanceToPlayer <= 0.0f && distanceToPlayer < 9.0f);
+            canFollow = (LOS && playerDetected && canJumpToPlayer && distanceToPlayer < 9.0f);
         }
         return canFollow;
     }
