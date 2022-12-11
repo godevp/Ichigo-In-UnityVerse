@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     private GetsugaManager getsugaParent;
     public UnityEngine.UI.Button getusgaButton;
 
+
     #region Start Update FixedUpdate OnDrawGizmos
     void Start()
     {
@@ -135,6 +136,7 @@ public class PlayerController : MonoBehaviour
     {
             if (!attacked && isGrounded)
             {
+            AudioManager.instance.PlayThisClip("Sword Slash");
                 animator.SetTrigger("isAttacking");
                 StartCoroutine(simpleAttackWithTriggerReset(0.24f));
             }
@@ -153,6 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!usedGetsuga && isGrounded && _mana > 15)
         {
+            AudioManager.instance.PlayThisClip("GetsugaSOund");
             animator.SetTrigger("isUsingGetsuga");
             StartCoroutine(GetsugaWithTriggerReset(fireRate));
         }

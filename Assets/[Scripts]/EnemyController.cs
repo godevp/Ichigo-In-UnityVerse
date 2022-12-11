@@ -57,6 +57,9 @@ public class EnemyController : MonoBehaviour
     public float attackForce;
 
     public bool isActive = true;
+
+    [Header("Anim")]
+    public AudioSource aSource;
     private void Start()
     {
         direction = Vector2.left;
@@ -131,9 +134,13 @@ public class EnemyController : MonoBehaviour
     }
     void SimpleAttack()
     {
+        aSource.clip = AudioManager.instance.ReturnClipWithName("monsterHit");
+        if (!aSource.isPlaying)
+            aSource.Play();
         _animator.SetTrigger("Attack");
         if(!startedSimpleAttack)
         StartCoroutine(simpleEnemyAttack(0.23f));
+        
     }
     private IEnumerator simpleEnemyAttack(float delay)
     {
@@ -147,9 +154,14 @@ public class EnemyController : MonoBehaviour
         startedSimpleAttack = false;
     }
     void DashAttack()
-    { 
+    {
+        //AudioManager.instance.PlayThisClipEnemy("monsterHit");
+        aSource.clip = AudioManager.instance.ReturnClipWithName("monsterHit");
+        if(!aSource.isPlaying)
+        aSource.Play();
         _animator.SetTrigger("DashAttack");
         _rb.AddForce(new Vector3(direction.x * attackForce, (Vector2.up * 1).x),ForceMode2D.Impulse);
+        
     }
 
 

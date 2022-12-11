@@ -25,6 +25,7 @@ public class CoinScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            AudioManager.instance.PlayThisClip("CoinPickUp");
             Destroy(gameObject);
             playerController._score += coinScore;
         }
