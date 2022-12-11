@@ -134,7 +134,7 @@ public class EnemyController : MonoBehaviour
     }
     void SimpleAttack()
     {
-        aSource.clip = AudioManager.instance.ReturnClipWithName("monsterHit");
+        aSource.clip = AudioManager.instance.ReturnClipWithName("punch");
         if (!aSource.isPlaying)
             aSource.Play();
         _animator.SetTrigger("Attack");
