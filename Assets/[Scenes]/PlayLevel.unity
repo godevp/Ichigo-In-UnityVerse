@@ -12690,7 +12690,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 575171796}
-  - component: {fileID: 575171798}
   - component: {fileID: 575171797}
   m_Layer: 5
   m_Name: ManaBar
@@ -12772,20 +12771,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &575171798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575171795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37e0707446f63f47a48b82b2ef545b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 575171797}
-  player: {fileID: 1702488379}
 --- !u!1001 &590373441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21374,6 +21359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1804475778}
+  manaSlider: {fileID: 575171797}
   player: {fileID: 1702488379}
 --- !u!4 &1837867339 stripped
 Transform:
@@ -22134,17 +22120,9 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 12529514}
     m_Modifications:
-    - target: {fileID: 1223688846052434268, guid: a14053954879e864aa8fb37212327828, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1659335491821205505, guid: a14053954879e864aa8fb37212327828, type: 3}
       propertyPath: m_Name
       value: enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1659335491821205505, guid: a14053954879e864aa8fb37212327828, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1659335491821205630, guid: a14053954879e864aa8fb37212327828, type: 3}
       propertyPath: m_Pivot.x
@@ -22231,20 +22209,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2383706404710455897, guid: a14053954879e864aa8fb37212327828, type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2383706404710455897, guid: a14053954879e864aa8fb37212327828, type: 3}
       propertyPath: coinsParent
       value: 
       objectReference: {fileID: 1501546952}
     - target: {fileID: 2383706404710455897, guid: a14053954879e864aa8fb37212327828, type: 3}
       propertyPath: horizontalSpeed
       value: 2.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2383706404710455897, guid: a14053954879e864aa8fb37212327828, type: 3}
-      propertyPath: delayBeforeDeath
-      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5706881036469485982, guid: a14053954879e864aa8fb37212327828, type: 3}
       propertyPath: m_AnchorMax.x

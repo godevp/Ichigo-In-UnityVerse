@@ -89,6 +89,15 @@ public class PlayerController : MonoBehaviour
             Movement();
             Jump();
         }    
+
+        if(_mana < _maxMana)
+        {
+            _mana += 5 * Time.fixedDeltaTime;
+            if(_mana > _maxMana)
+            {
+                _mana = _maxMana;
+            }
+        }
     }
 
     private void Update()
@@ -142,7 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     public void FireGetsuga()
     {
-        if(!usedGetsuga && isGrounded)
+        if(!usedGetsuga && isGrounded && _mana > 15)
         {
             animator.SetTrigger("isUsingGetsuga");
             StartCoroutine(GetsugaWithTriggerReset(fireRate));
@@ -150,7 +159,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator GetsugaWithTriggerReset(float delay)
     {
-
+        _mana -= 15.0f;
         usedGetsuga = true;
         yield return new WaitForSeconds(delay / 2);
         var getsuga = getsugaParent.GetBullet(GetsugaTransform.position);

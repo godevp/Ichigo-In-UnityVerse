@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 3
   playerDetection: {fileID: 6288671531735762309}
+  maxHealth: 0
   health: 100
   inFrontPoint: {fileID: 1679604090331409124}
   AheadPoint: {fileID: 3176077601757190361}
@@ -413,7 +414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889095827652240898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.748, y: -0.8, z: 0}
+  m_LocalPosition: {x: 1.397, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -15,6 +15,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
+    public Slider manaSlider;
    [SerializeField] private PlayerController player;
 
     private void Start()
@@ -22,12 +23,16 @@ public class HealthBar : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         SetMaxHealth(player._maxHealth);
         SetHealth(player._health);
+        manaSlider.value = player._maxMana;
+        manaSlider.maxValue = player._maxMana;
+       
     }
 
 
     private void Update()
     {
         SetHealth(player._health);
+        manaSlider.value = player._mana;
     }
     public void SetMaxHealth(float mHealth)
     {

@@ -63,7 +63,7 @@ public class PlayerDetection : MonoBehaviour
         if(LOSTransform != null)
         {
             float distanceToPlayer = (transform.position - LOSTransform.transform.position).magnitude;
-            canFollow = (LOS && playerDetected && canJumpToPlayer && distanceToPlayer > 2.0f && distanceToPlayer < 11.0f);
+            canFollow = (LOS && playerDetected && canJumpToPlayer && distanceToPlayer <= 0.0f && distanceToPlayer < 9.0f);
         }
         return canFollow;
     }
