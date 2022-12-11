@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ 
+ Source file Name - PlayerDetection.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 12/11/2022 
+ Program description: big part of player detection for enemy;
 
+ */
 public class PlayerDetection : MonoBehaviour
 {
     public LayerMask collisionLayerMask;

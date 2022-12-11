@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ 
+ Source file Name - AudioManager.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 12/11/2022
+ Program description: Just a simple audio manager with instance
 
+ */
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;

@@ -6,7 +6,15 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+/*
+ 
+ Source file Name - EnemyController.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 12/11/2022
+ Program description: Main enemy behaviour
 
+ */
 public class EnemyController : MonoBehaviour
 {
     [Header("Movement Properties")]
@@ -78,7 +86,10 @@ public class EnemyController : MonoBehaviour
         coinsParent = GameObject.Find("[COINS]");
         _animator = GetComponent<Animator>();
         startPos = transform.position;
+        if(enemyType ==0)
         coinPoints = Random.Range(50, 101);
+        if(enemyType == 1)
+            coinPoints = Random.Range(150, 201);
     }
 
     private void Update()
@@ -130,12 +141,6 @@ public class EnemyController : MonoBehaviour
 
         healthBar.value = health;
 
-
-       /* if(health <= 0)
-        {
-            health = 0;
-            StartCoroutine(DelayBeforeDeath(delayBeforeDeath));
-        }*/
     }
     void SimpleAttack()
     {
@@ -153,6 +158,7 @@ public class EnemyController : MonoBehaviour
             var attackSphere = Physics2D.OverlapCircle(playerDetection.transform.position, playerAttackRadius, playerMask);
             if (attackSphere && attackSphere.gameObject.tag == "Player")
             {
+            Debug.Log("Here");
                 attackSphere.gameObject.GetComponent<PlayerController>()._health -= attackPower;
             }
         yield return new WaitForSeconds(delay);
@@ -202,8 +208,8 @@ public class EnemyController : MonoBehaviour
 
         Gizmos.color = Color.black;
         Gizmos.DrawLine(inFrontPoint.position, whereToCheck.position);
-        Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(playerDetection.transform.position, 0.3f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(playerDetection.transform.position, playerAttackRadius);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

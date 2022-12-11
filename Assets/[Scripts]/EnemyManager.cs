@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
+/*
+ 
+ Source file Name - EnemyManager.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 12/11/2022 
+ Program description: once enemy hp is <= 0 we want to spawn a coin there, disable that enemy and redisable it later
+
+ */
+
 public class EnemyManager : MonoBehaviour
 {
     private List<EnemyController> enemyList;
@@ -44,6 +54,7 @@ public class EnemyManager : MonoBehaviour
         go.SetActive(true);
         go.GetComponent<EnemyController>().isActive = true;
         go.GetComponent<EnemyController>().health = go.GetComponent<EnemyController>().maxHealth;
+        go.GetComponent<EnemyController>().startedSimpleAttack = false;
         go.transform.position = go.GetComponent<EnemyController>().startPos;
 
     }

@@ -24,6 +24,7 @@ public class Score : MonoBehaviour
 
     private void Update()
     {
-        _text.text = "Score: " + player._score.ToString();
+        if(DataSaver.Instance != null)
+        _text.text = "Score: " + DataSaver.Instance.score;
     }
 }

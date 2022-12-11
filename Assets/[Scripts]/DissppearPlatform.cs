@@ -8,7 +8,7 @@ using UnityEngine;
  Source file Name - DissppearPlatform.cs
  Name - Vitaliy Karabanov
  ID - 101312885
- Date last Modified - 11/20/2022 
+ Date last Modified - 12/11/2022 
  Program description: attached to each dissapear platform and on trigger enter from player will start couroutine from manager
 
  */
