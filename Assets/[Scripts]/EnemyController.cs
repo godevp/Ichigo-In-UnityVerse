@@ -92,7 +92,7 @@ public class EnemyController : MonoBehaviour
             coinPoints = Random.Range(150, 201);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         isObstacleAhead = Physics2D.Linecast(groundPoint.position, inFrontPoint.position, groundLayerMask);
         isAnotherEnemyAhead = Physics2D.Linecast(otherEnemiesPoint.position, inFrontPoint.position, maskForAnotherEnemies);

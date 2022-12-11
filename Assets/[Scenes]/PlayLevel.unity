@@ -629,7 +629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: attackForce
-      value: 0.05
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
+      propertyPath: playerAttackRadius
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5766316695996550253, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13770,7 +13774,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: attackForce
-      value: 0.05
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
+      propertyPath: playerAttackRadius
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5766316695996550253, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15038,7 +15046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: attackForce
-      value: 0.05
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
+      propertyPath: playerAttackRadius
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5766316695996550253, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15231,6 +15243,10 @@ PrefabInstance:
     - target: {fileID: 591058683448358386, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: m_Name
       value: enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
+      propertyPath: playerAttackRadius
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5766316695996550253, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: m_AnchorMax.x
@@ -16438,7 +16454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: attackForce
-      value: 0.05
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476675007031613354, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
+      propertyPath: playerAttackRadius
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5766316695996550253, guid: 688a7a5abd3cb6943b15957e5ba98f05, type: 3}
       propertyPath: m_AnchorMax.x
@@ -23987,45 +24007,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 462124005476290400, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: m_Size.x
-      value: 1.2379
-      objectReference: {fileID: 0}
-    - target: {fileID: 462124005476290400, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: m_Size.y
-      value: 1.2721322
-      objectReference: {fileID: 0}
-    - target: {fileID: 462124005476290400, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.010679603
-      objectReference: {fileID: 0}
-    - target: {fileID: 462124005476290400, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.06763756
-      objectReference: {fileID: 0}
     - target: {fileID: 462124005476290402, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
       propertyPath: m_Name
       value: enemy (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470688562913141321, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.925
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470688562913141321, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.152
-      objectReference: {fileID: 0}
-    - target: {fileID: 3493192264073358650, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: enemyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3493192264073358650, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: attackPower
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3493192264073358650, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
-      propertyPath: playerAttackRadius
-      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 6799315669688415997, guid: dd61e22e6407c0b498ad6b3a9d7af082, type: 3}
       propertyPath: m_AnchorMax.x

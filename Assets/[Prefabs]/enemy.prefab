@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a2b6a890c36674f9aa7c086b75678d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 7
+  horizontalSpeed: 10
   isObstacleAhead: 0
   isAnotherEnemyAhead: 0
   isPlayerAhead: 0
@@ -149,11 +149,13 @@ MonoBehaviour:
     m_Bits: 512
   whereToCheck: {fileID: 4052230652527747952}
   shouldDash: 0
+  isDashing: 0
   startedSimpleAttack: 0
   attackPower: 2
-  playerAttackRadius: 0.3
+  playerAttackRadius: 0.7
+  enemyType: 0
   _animator: {fileID: 0}
-  attackForce: 0.05
+  attackForce: 1
   isActive: 1
   aSource: {fileID: 5512874758293865935}
 --- !u!50 &591058683448358287

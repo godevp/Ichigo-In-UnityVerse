@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump()
     {
-        var y = Input.GetAxis("Fire2") + leftStick.Vertical;
+        var y = Input.GetAxis("Fire2") + Input.GetAxis("Jump") + leftStick.Vertical;
 
 
         if ((isGrounded) && (y > verticalThreshold) /*&& !(animator.GetBool("Attacking"))*/)
