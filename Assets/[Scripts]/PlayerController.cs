@@ -39,10 +39,16 @@ public class PlayerController : MonoBehaviour
     public Transform pointForEnemyToLookAt;
     public float radiusForEnemy;
     public float groundRadius; // the size of the circle
+   
     public LayerMask groundLayerMask; // the stuff we can collide with
 
-    private float _timer;
-    private float _timer2;
+
+    [Header("ForAttacking")]
+    public LayerMask enemyLayerMask;
+    public Transform AttackCenterArea;
+    public float AttackRadius;
+    public bool attacked = false;
+    public bool usedGetsuga = false;
 
     [Header("Controls")]
     public Joystick leftStick;
@@ -61,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private GetsugaManager getsugaParent;
     public UnityEngine.UI.Button getusgaButton;
 
-
+    #region Start Update FixedUpdate OnDrawGizmos
     void Start()
     {
         getsugaParent = FindObjectOfType<GetsugaManager>();
@@ -76,8 +82,11 @@ public class PlayerController : MonoBehaviour
         var hit = Physics2D.OverlapCircle(groundPoint.position, groundRadius, groundLayerMask);
         isGrounded = hit;
 
-        Movement();
-        Jump();
+        if(!usedGetsuga)
+        {
+            Movement();
+            Jump();
+        }    
     }
 
     private void Update()
@@ -85,67 +94,80 @@ public class PlayerController : MonoBehaviour
         Attack();
 
         CheckHealth();
-        if (_timer > 0)
-        {
-            _timer -= Time.deltaTime;
-            if (_timer < 0)
-                _timer = 0;
-            SetNewColors(new Color(getusgaButton.colors.normalColor.r, getusgaButton.colors.normalColor.g, getusgaButton.colors.normalColor.b, 255), getusgaButton.colors);
-        }
-        if (_timer2 > 0)
-        {
-            _timer2 -= Time.deltaTime;
-            if (_timer2 < 0)
-                _timer2 = 0;
-        }
     }
-    private void CheckHealth()
+    public void OnDrawGizmos()
     {
-        if (Input.GetKey(KeyCode.H))
-        {
-            _health -= Time.deltaTime * 5;
-        }
-        if(_health <= 0)
-        {
-            _health = 0;
-            Buttons.instance.Surrender();
-        }
-    }
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(groundPoint.position, groundRadius);
 
+        Gizmos.DrawWireSphere(pointForEnemyToLookAt.position, radiusForEnemy);
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(AttackCenterArea.position, AttackRadius);
+    }
+    #endregion 
+    
+    #region Attacking
     public void Attack()
     {
-        if (Input.GetKey(KeyCode.F) && _timer == 0)
+        if (Input.GetKey(KeyCode.F))
         {
             FireGetsuga();
         }
-        
+        if(Input.GetKey(KeyCode.R))
+        {
+            simpleAttack();
+        }
+    }
+    public void simpleAttack()
+    {
+            if (!attacked && isGrounded)
+            {
+                animator.SetTrigger("isAttacking");
+                StartCoroutine(simpleAttackWithTriggerReset(0.24f));
+            }
+    }
+
+    IEnumerator simpleAttackWithTriggerReset(float delay)
+    {
+        attacked = true;
+        MakeDamage(25.0f);
+        yield return new WaitForSeconds(delay/2);
+        animator.ResetTrigger("isAttacking");
+        yield return new WaitForSeconds(delay);
+        attacked = false;
     }
     public void FireGetsuga()
     {
-        if(_timer == 0)
+        if(!usedGetsuga && isGrounded)
         {
-            var getsuga = getsugaParent.GetBullet(GetsugaTransform.position);
-            _timer = fireRate;
-            SetNewColors(new Color(getusgaButton.colors.normalColor.r, getusgaButton.colors.normalColor.g, getusgaButton.colors.normalColor.b,100), getusgaButton.colors);
-           // getusgaButton.colors
+            animator.SetTrigger("isUsingGetsuga");
+            StartCoroutine(GetsugaWithTriggerReset(fireRate));
         }
     }
-    void SetNewColors(Color color, ColorBlock colorss)
+    IEnumerator GetsugaWithTriggerReset(float delay)
     {
-        ColorBlock colorsBlock = new ColorBlock();
-        colorsBlock.normalColor = color;
-        colorsBlock.selectedColor = color;
-        colorsBlock.pressedColor = color;
-        colorss = colorsBlock;
+
+        usedGetsuga = true;
+        yield return new WaitForSeconds(delay / 2);
+        var getsuga = getsugaParent.GetBullet(GetsugaTransform.position);
+        usedGetsuga = false;
+        yield return new WaitForSeconds(delay);
+        animator.ResetTrigger("isUsingGetsuga");
     }
-    public void SimpleAttack()
+    void MakeDamage(float damage)
     {
-        if(_timer2 == 0)
+        var hit = Physics2D.OverlapCircle(AttackCenterArea.position, AttackRadius, enemyLayerMask);
+        if (hit)
         {
-            Debug.Log("SimpleAttack");
-            _timer2 = simpleAttackRate;
+            hit.gameObject.GetComponent<EnemyController>().health -= damage;
+            Debug.Log(hit.gameObject.GetComponent<EnemyController>().health);
         }
     }
+    #endregion
+
+    #region Movement Flip Jump
     void Movement()
     {
         
@@ -168,13 +190,18 @@ public class PlayerController : MonoBehaviour
         CheckState(moveX);
        
     }
-
-
-     private void Jump()
+    public void Flip(float x)
+    {
+        if (x != 0.0f)
+        {
+            transform.localScale = new Vector3((x > 0.0f) ? 1.0f : -1.0f, 1.0f, 1.0f);
+        }
+    }
+    private void Jump()
     {
         var y = Input.GetAxis("Fire2") + leftStick.Vertical;
 
-        
+
         if ((isGrounded) && (y > verticalThreshold) /*&& !(animator.GetBool("Attacking"))*/)
         {
             _rb.AddForce(Vector2.up * verticalForce, ForceMode2D.Impulse);
@@ -185,12 +212,36 @@ public class PlayerController : MonoBehaviour
             ChangeAnimation(PlayerAnimationState.JUMP);
         }
     }
+    #endregion
+
+    #region Animation stuff
     private void ChangeAnimation(PlayerAnimationState animState)
     {
         animationState = animState;
         animator.SetInteger("AnimationState", (int)animationState);
-     
+
     }
+    private IEnumerator DisableAnim(float delay, PlayerAnimationState animState)
+    {
+        yield return new WaitForSeconds(delay);
+        ChangeAnimation(animState);
+    }
+    #endregion
+
+    #region CheckHealth()/ CheckState()/ SetNewColor()
+    private void CheckHealth()
+    {
+        if (Input.GetKey(KeyCode.H))
+        {
+            _health -= Time.deltaTime * 5;
+        }
+        if (_health <= 0)
+        {
+            _health = 0;
+            Buttons.instance.Surrender();
+        }
+    }
+
 
     private void CheckState(float mX)
     {
@@ -205,28 +256,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator DisableAnim(float delay, PlayerAnimationState animState)
+
+    void SetNewColors(Color color, ColorBlock colorss)
     {
-        yield return new WaitForSeconds(delay);
-        ChangeAnimation(animState);
+        ColorBlock colorsBlock = new ColorBlock();
+        colorsBlock.normalColor = color;
+        colorsBlock.selectedColor = color;
+        colorsBlock.pressedColor = color;
+        colorss = colorsBlock;
     }
-
-
-    public void Flip(float x)
-    {
-        if (x != 0.0f)
-        {
-            transform.localScale = new Vector3((x > 0.0f) ? 1.0f : -1.0f, 1.0f, 1.0f);
-        }
-    }
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(groundPoint.position, groundRadius);
-
-        Gizmos.DrawWireSphere(pointForEnemyToLookAt.position, radiusForEnemy);
-    }
-
-
+    #endregion
 
 }

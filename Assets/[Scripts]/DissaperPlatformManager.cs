@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 /*
  
@@ -32,5 +33,13 @@ public class DissaperPlatformManager : MonoBehaviour
         go.SetActive(go.GetComponent<DissppearPlatform>()._active);
         
 
+    }
+
+    public void SpawnCoinFromEnemy(Transform t, GameObject go)
+    {
+        if(t != null && gameObject != null)
+        {
+           
+        }
     }
 }

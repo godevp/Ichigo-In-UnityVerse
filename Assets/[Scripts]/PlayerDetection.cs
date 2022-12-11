@@ -25,15 +25,22 @@ public class PlayerDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerDetected)
+        if (playerDetected)
         {
-            canJumpToPlayer = Physics2D.OverlapCircle(LOSTransform.position, radius, playerMask);
+
             var hit = Physics2D.Linecast(transform.position, LOSTransform.position, collisionLayerMask);
             collider = hit.collider;
             LOS = (hit.collider.gameObject.tag == "Player");
-            Debug.Log(LOS);
+            if (LOS)
+            {
+                canJumpToPlayer = Physics2D.OverlapCircle(LOSTransform.position, radius, playerMask);
+            }
+            else
+            {
+                canJumpToPlayer = false;
+            }
+
         }
-        //Debug.Log("Can jump to Player : " + canJumpToPlayer);
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,6 +55,17 @@ public class PlayerDetection : MonoBehaviour
     public void setMaskFromParent(LayerMask mask)
     {
         playerMask = mask;
+    }
+
+    public bool CanSeeThePlayer()
+    {
+        bool canFollow = false;
+        if(LOSTransform != null)
+        {
+            float distanceToPlayer = (transform.position - LOSTransform.transform.position).magnitude;
+            canFollow = (LOS && playerDetected && canJumpToPlayer && distanceToPlayer > 2.0f && distanceToPlayer < 11.0f);
+        }
+        return canFollow;
     }
 
     private void OnDrawGizmos()
