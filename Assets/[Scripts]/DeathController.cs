@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
+/*
+ 
+ Source file Name - DeathController.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 10/20/2022 
+ Program description: continue for our respawn for player
+
+ */
+
 public class DeathController : MonoBehaviour
 {
     public Transform playerSpawnPoint;

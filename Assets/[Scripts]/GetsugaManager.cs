@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ 
+ Source file Name - GetsugaManager.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: manager for getsuga where we hold our queue for next POOL logic.
 
+ */
 public class GetsugaManager : MonoBehaviour
 {
     public GameObject getsugaPrefab;

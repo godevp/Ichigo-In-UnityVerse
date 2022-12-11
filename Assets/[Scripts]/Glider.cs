@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ 
+ Source file Name - Glider.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: script for ice platform
+
+ */
 public class Glider : MonoBehaviour
 {
     private HingeJoint2D hingeJoint2D;

@@ -66,8 +66,9 @@ Transform:
   m_Children:
   - {fileID: 3806687876660513924}
   - {fileID: 1472512535751927827}
+  - {fileID: 383701012744748212}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3806687877813723196
 SpriteRenderer:
@@ -139,6 +140,8 @@ MonoBehaviour:
   airFactor: 1
   isGrounded: 0
   groundPoint: {fileID: 3806687876660513924}
+  pointForEnemyToLookAt: {fileID: 383701012744748212}
+  radiusForEnemy: 0.5
   groundRadius: 0.3
   groundLayerMask:
     serializedVersion: 2
@@ -266,6 +269,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &4611584925461006240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383701012744748212}
+  m_Layer: 9
+  m_Name: PointForEnemyToLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &383701012744748212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611584925461006240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.055, y: 0.082, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3806687877813723197}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5201701846195198618
 GameObject:
   m_ObjectHideFlags: 0

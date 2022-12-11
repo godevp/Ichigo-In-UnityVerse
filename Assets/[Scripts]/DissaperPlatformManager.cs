@@ -7,7 +7,7 @@ using UnityEngine;
  Name - Vitaliy Karabanov
  ID - 101312885
  Date last Modified - 11/20/2022 
- Program description: Move the background in certain direction and reset it when it gets to the bounds.
+ Program description: manager for dissapear platform which will respawn and deactivate by the enumerator
 
  */
 public class DissaperPlatformManager : MonoBehaviour

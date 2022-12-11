@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ 
+ Source file Name - HealthBar.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: health bar update
+
+ */
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;

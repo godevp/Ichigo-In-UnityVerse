@@ -13,6 +13,14 @@ public enum PlayerAnimationState
     ATTACK,         //3
     ATTACKED        //4
 }
+/*
+ 
+ Source file Name - PlayerController.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: main player controller
+ */
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public float airFactor = 5.0f;
     public bool isGrounded = true;
     public Transform groundPoint; // the origin of the circle
+    public Transform pointForEnemyToLookAt;
+    public float radiusForEnemy;
     public float groundRadius; // the size of the circle
     public LayerMask groundLayerMask; // the stuff we can collide with
 
@@ -213,6 +223,8 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(groundPoint.position, groundRadius);
+
+        Gizmos.DrawWireSphere(pointForEnemyToLookAt.position, radiusForEnemy);
     }
 
 

@@ -14,6 +14,15 @@ public enum PlatformDirection
     CUSTOM
 }
 
+/*
+ 
+ Source file Name - PlatformScript.cs
+ Name - Vitaliy Karabanov
+ ID - 101312885
+ Date last Modified - 11/20/2022 
+ Program description: the core for movable platforms
+
+ */
 public class PlatformScript : MonoBehaviour
 {
     public PlatformDirection direction;
