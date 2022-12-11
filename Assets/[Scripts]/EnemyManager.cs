@@ -39,8 +39,8 @@ public class EnemyManager : MonoBehaviour
         go.GetComponent<EnemyController>().isActive = false;
         var coin = Instantiate(enemyList[index].coinPrefab, enemyList[index].coinsParent.transform);
         coin.transform.position = go.transform.position;
+        coin.GetComponent<CoinScript>().coinScore = go.GetComponent<EnemyController>().coinPoints;
         yield return new WaitForSeconds(respawnTime);
-        Debug.Log("WFEGFQWF");
         go.SetActive(true);
         go.GetComponent<EnemyController>().isActive = true;
         go.GetComponent<EnemyController>().health = go.GetComponent<EnemyController>().maxHealth;

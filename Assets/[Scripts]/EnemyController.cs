@@ -40,10 +40,9 @@ public class EnemyController : MonoBehaviour
     [Header("Coins")]
     public GameObject coinPrefab;
     public GameObject coinsParent;
-
+    public int coinPoints;
    
 
-    public float delayBeforeDeath;
     [Header("Attack")]
     public float jumpDistance;
     public float simpleAttackDistance;
@@ -51,7 +50,12 @@ public class EnemyController : MonoBehaviour
     public LayerMask playerMask;
     public Transform whereToCheck;
     public bool shouldDash;
+    public bool isDashing;
     public bool startedSimpleAttack;
+    public float attackPower;
+    public float playerAttackRadius;
+    public int enemyType;
+
     [Header("Anim")]
     public Animator _animator;
     public float attackForce;
@@ -74,6 +78,7 @@ public class EnemyController : MonoBehaviour
         coinsParent = GameObject.Find("[COINS]");
         _animator = GetComponent<Animator>();
         startPos = transform.position;
+        coinPoints = Random.Range(50, 101);
     }
 
     private void Update()
@@ -94,7 +99,7 @@ public class EnemyController : MonoBehaviour
         {
             Movement();
         }
-        if(!isGrounded || isObstacleAhead || !isGroundAhead || isAnotherEnemyAhead)
+        if(!isGrounded || isObstacleAhead || (!isGroundAhead && enemyType != 1)|| isAnotherEnemyAhead)
         {
             Flip();
         }
@@ -145,10 +150,10 @@ public class EnemyController : MonoBehaviour
     private IEnumerator simpleEnemyAttack(float delay)
     {
         startedSimpleAttack = true;
-            var attackSphere = Physics2D.OverlapCircle(playerDetection.transform.position, 0.3f, playerMask);
+            var attackSphere = Physics2D.OverlapCircle(playerDetection.transform.position, playerAttackRadius, playerMask);
             if (attackSphere && attackSphere.gameObject.tag == "Player")
             {
-                attackSphere.gameObject.GetComponent<PlayerController>()._health -= 2.0f;
+                attackSphere.gameObject.GetComponent<PlayerController>()._health -= attackPower;
             }
         yield return new WaitForSeconds(delay);
         startedSimpleAttack = false;
@@ -161,7 +166,7 @@ public class EnemyController : MonoBehaviour
         aSource.Play();
         _animator.SetTrigger("DashAttack");
         _rb.AddForce(new Vector3(direction.x * attackForce, (Vector2.up * 1).x),ForceMode2D.Impulse);
-        
+        isDashing = true;
     }
 
 
@@ -203,9 +208,10 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && isDashing)
         {
-            collision.gameObject.GetComponent<PlayerController>()._health -= 10.0f;
+            collision.gameObject.GetComponent<PlayerController>()._health -= attackPower * 2;
+            isDashing = false;
         }
     }
 
